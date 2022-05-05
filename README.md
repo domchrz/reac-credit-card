@@ -1,15 +1,13 @@
-# Nav-menu
+# credit-card
 
-Functionalities
-* adds new tasks
-* validates if task already exists
-* drag & drop to mark the task as finished
-* loads spinner on remove & add task
-* displays modal while loading or on error
-* to trigger error submit new task that already exists
+Tech used
+* card-validator library
+* styled components
+* Context API
 
-React functionalities used
-* redux
-* redux-thunk
-* redux dnd
-* reselect
+Quick summary
+* project uses validator library
+* the library checks the card number and returns information about gaps, cvv, card lengths and possible card provider
+* the above data is used to manipulate the card representation, meaning - appropriate gaps, cvv and card lengths are applied to UI
+* the form enables card number and cvv concealment
+* the error handling and submitting actions are limited
