@@ -37,7 +37,7 @@ export const StyledButton = styled.button`
   font-size: 1.4rem;
   letter-spacing: 0.05rem;
   font-family: ${({ theme }) => theme.fonts.sansSerif};
-  color: ${({ theme }) => theme.colors.main};
+  color: transparent;
   background-image: linear-gradient(to top left, #ff512f, #f09819);
   border-radius: ${({ theme }) => theme.effects.borderRadius};
   box-shadow: ${({ theme }) => theme.effects.boxShadow};
@@ -53,6 +53,7 @@ export const StyledButton = styled.button`
     justify-content: center;
     position: absolute;
     inset: 0;
+    color: ${({ theme }) => theme.colors.main};
     background-color: transparent;
     transition: background-color 0.7s;
     border-radius: ${({ theme }) => theme.effects.borderRadius};

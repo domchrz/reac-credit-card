@@ -2,6 +2,7 @@ import validateCard, {
   validateCardLength,
   validateCvvLength,
   getCardInfo,
+  validateOwnerField,
 } from '../../helpers/cardValidators';
 import useCard from '../../hooks/useCard';
 import CardInput from '../CardInput/CardInput';
@@ -54,12 +55,17 @@ export default function CardForm() {
 
   const onChange = inputName => e => {
     let { value } = e.target;
-    switch (card[inputName].name.toLowerCase()) {
+    const input = card[inputName].name.toLowerCase();
+    switch (input) {
       case 'number':
         value = validateCardLength(card.cardInfo, value);
         break;
       case 'cvv':
         value = validateCvvLength(card.cardInfo, value);
+        break;
+      case 'name':
+      case 'surname':
+        value = validateOwnerField(value);
         break;
     }
 

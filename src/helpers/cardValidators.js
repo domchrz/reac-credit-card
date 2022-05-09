@@ -54,3 +54,5 @@ export const validateCvvLength = (cardInfo = {}, cvv = '') => {
 
   return validCvv.join('');
 };
+
+export const validateOwnerField = (value) => value.replace(/[^a-zA-Z]+/g, '');
