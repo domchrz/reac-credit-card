@@ -52,7 +52,7 @@ export default function App() {
           }}
           validate={validateFrom}
           onSubmit={onSubmit}>
-          {({ setFieldValue, values, resetForm, handleSubmit }) => (
+          {({ setFieldValue, values, resetForm, handleSubmit, errors }) => (
             <>
               <Card
                 isCvvFocused={isCvvFocused}
@@ -66,6 +66,7 @@ export default function App() {
                 required={true}
                 resetForm={resetForm}
                 handleSubmit={handleSubmit}
+                errors={errors}
                 cvvLabel={cardInfo.code?.name || 'CVV'}
               />
             </>

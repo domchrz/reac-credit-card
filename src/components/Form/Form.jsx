@@ -4,10 +4,20 @@ import { StyledForm, StyledButton } from './styles';
 
 const InputWithConcealment = withConcealment(Input);
 
-export default function Form({ cvvLabel, resetForm, handleSubmit, ...props }) {
+export default function Form({
+  cvvLabel,
+  resetForm,
+  handleSubmit,
+  errors,
+  ...props
+}) {
   return (
     <StyledForm
       onSubmit={e => {
+        if (Object.keys(errors).length) {
+          e.preventDefault();
+          return;
+        }
         handleSubmit(e);
         setTimeout(() => {
           resetForm(e);
