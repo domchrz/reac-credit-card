@@ -1,6 +1,7 @@
+import { Form } from 'formik';
 import styled from 'styled-components';
 
-export const StyledContainer = styled.form`
+export const StyledForm = styled(Form)`
   margin-top: 8rem;
   display: grid;
   justify-items: center;
@@ -8,22 +9,22 @@ export const StyledContainer = styled.form`
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
 
-  button {
+  & button {
     grid-column: span 2;
   }
 
-  label:last-of-type {
+  & label:last-of-type {
     grid-column: span 2;
   }
 
   @media (max-width: 50rem) {
     grid-template-columns: 1fr;
 
-    button {
+    & button {
       grid-column: span 1;
     }
 
-    label:last-of-type {
+    & label:last-of-type {
       grid-column: span 1;
     }
   }

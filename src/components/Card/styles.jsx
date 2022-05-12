@@ -8,6 +8,7 @@ export const StyledContainer = styled.div`
   position: absolute;
   transform-style: preserve-3d;
   top: -7.5rem;
+  transform: ${({ rotate }) => rotate};
   transition: transform 1s;
   background-image: linear-gradient(to top left, #ff512f, #f09819);
   color: ${({ theme }) => theme.colors.main};
@@ -24,36 +25,36 @@ export const StyledFront = styled.div`
   ${borderRadius};
   overflow: hidden;
 
-  header {
+  & header {
     grid-row: 1/2;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
 
-    h3,
-    span {
+    & h3,
+    & span {
       font-size: 1.7rem;
       font-style: italic;
     }
 
-    h3 {
+    & h3 {
       font-weight: normal;
     }
 
-    span {
+    & span {
       font-weight: bold;
     }
   }
 
-  main {
+  & main {
     grid-row: 2/3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    span.card-number {
+    & span.card-number {
       text-align: center;
       letter-spacing: 0.3rem;
       color: rgba(255, 255, 255, 0.5);
@@ -62,7 +63,7 @@ export const StyledFront = styled.div`
       font-size: 1.6rem;
     }
 
-    span.chip {
+    & span.chip {
       font-family: ${({ theme }) => theme.fonts.materialIcon};
       font-size: 2rem;
       padding: 1rem 1.5rem;
@@ -70,7 +71,7 @@ export const StyledFront = styled.div`
     }
   }
 
-  footer {
+  & footer {
     grid-row: 3/4;
     display: flex;
     justify-content: space-between;
@@ -82,19 +83,19 @@ export const StyledFront = styled.div`
     color: rgba(255, 255, 255, 0.5);
     text-shadow: 2px 2px 1px #ff512f;
 
-    .owner {
+    & .owner {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       width: 18rem;
       overflow: hidden;
 
-      span {
+      & span {
         word-break: break-all;
       }
     }
 
-    .expires {
+    & .expires {
       display: flex;
       flex-direction: column;
     }
@@ -110,32 +111,32 @@ export const StyledBack = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1.4fr;
 
-  header {
+  & header {
     grid-row: 1/2;
     display: flex;
     align-items: center;
 
-    div {
+    & div {
       height: 3rem;
       width: 100%;
       background-color: #151515;
     }
   }
 
-  main {
+  & main {
     grid-row: 2/3;
     display: flex;
     align-items: center;
     padding: 0.7rem 1rem;
     font-size: 1.2rem;
 
-    .white-line {
+    & .white-line {
       height: 2.5rem;
       width: 70%;
       background-color: #edf0d4;
     }
 
-    .cvv {
+    & .cvv {
       display: flex;
       justify-content: center;
       align-content: center;
@@ -147,7 +148,7 @@ export const StyledBack = styled.div`
     }
   }
 
-  footer {
+  & footer {
     grid-row: 3/4;
     font-size: 0.8rem;
     display: flex;
@@ -156,7 +157,7 @@ export const StyledBack = styled.div`
     gap: 1rem;
     padding: 1rem;
 
-    .holo {
+    & .holo {
       height: 3rem;
       flex-basis: 4rem;
       flex-shrink: 0;

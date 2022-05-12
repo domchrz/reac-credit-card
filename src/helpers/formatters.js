@@ -4,10 +4,6 @@ export const formatCardNumber = (cardInfo = {}, cardNumber = '') => {
 
   const formattedCardNumber = cardNumber.split('');
 
-  // if (lengths.every(length => formattedCardNumber.length > length)) {
-  //   formattedCardNumber.splice(lengths.reduce((a, b) => (a > b ? a : b)));
-  // }
-
   if (!lengths.some(length => length === formattedCardNumber.length)) {
     for (let i = 0; i < lengths[0]; i++) {
       if (!formattedCardNumber[i]) formattedCardNumber.push('*');

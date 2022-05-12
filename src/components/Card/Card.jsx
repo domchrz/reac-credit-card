@@ -1,37 +1,35 @@
-import { formatCardNumber, formatCvv, formatExpDate } from '../../helpers/formatCardFields';
-import useCard from '../../hooks/useCard';
+import {
+  formatCardNumber,
+  formatCvv,
+  formatExpDate,
+} from '../../helpers/formatters';
 import { StyledBack, StyledContainer, StyledFront } from './styles';
 
-export default function Card() {
-  const { card } = useCard();
-
+export default function Card({ isCvvFocused, cardInfo, values }) {
   return (
-    <StyledContainer
-      style={{
-        transform: card.CVV.isFocused ? 'rotateY(180deg)' : 'rotateY(0)',
-      }}>
+    <StyledContainer rotate={isCvvFocused ? 'rotateY(180deg)' : 'rotateY(0)'}>
       <StyledFront>
         <header>
           <h3>CreditCard</h3>
-          <span>{card.cardInfo.type?.toUpperCase() || 'VISA'}</span>
+          <span>{cardInfo.type?.toUpperCase() || 'VISA'}</span>
         </header>
         <main>
           <span className="chip">chevron_left developer_board rss_feed</span>
           <span className="card-number">
-            {formatCardNumber(card.cardInfo, card.Number.value)}
+            {formatCardNumber(cardInfo, values.number)}
           </span>
         </main>
         <footer>
           <div className="owner">
             <span>
-              {card.Name.value || card.Surname.value
-                ? `${card.Name.value.toUpperCase()} ${card.Surname.value.toUpperCase()}`
+              {values.name || values.surname
+                ? `${values.name.toUpperCase()} ${values.surname.toUpperCase()}`
                 : 'OWNER'}
             </span>
           </div>
           <div className="expires">
             <span>Expires:</span>
-            <span>{formatExpDate(card.Expires.value)}</span>
+            <span>{formatExpDate(values.expires)}</span>
           </div>
         </footer>
       </StyledFront>
@@ -41,8 +39,8 @@ export default function Card() {
         </header>
         <main>
           <span className="white-line"></span>
-          <span className="cvv">{formatCvv(card.cardInfo, card.CVV.value)}</span>
-          <span className="cvv">{card.cardInfo.code?.name || 'CVV'}</span>
+          <span className="cvv">{formatCvv(cardInfo, values.cvv)}</span>
+          <span className="cvv">{cardInfo.code?.name || 'CVV'}</span>
         </main>
         <footer>
           <span className="holo"></span>
