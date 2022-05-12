@@ -9,7 +9,9 @@ export default function Form({ cvvLabel, resetForm, handleSubmit, ...props }) {
     <StyledForm
       onSubmit={e => {
         handleSubmit(e);
-        resetForm(e);
+        setTimeout(() => {
+          resetForm(e);
+        }, 0);
       }}>
       <Input type="text" name="name" label="Name" {...props} />
       <Input type="text" name="surname" label="Surname" {...props} />
