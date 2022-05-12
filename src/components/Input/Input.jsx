@@ -11,7 +11,14 @@ export default function Input({ children, ...props }) {
       <StyledLabel>
         <span>{props.label}</span>
         <div>
-          <input {...field} {...props} />
+          <input
+            {...field}
+            {...props}
+            onBlur={e => {
+              field.onBlur(e);
+              props.onBlur();
+            }}
+          />
           {children}
         </div>
         {error && touched && <InputError>{error}</InputError>}

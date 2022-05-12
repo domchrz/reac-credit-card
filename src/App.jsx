@@ -30,9 +30,11 @@ export default function App() {
     if (e.target.name === 'cvv') {
       setIsCvvFocused(true);
     } else {
-      setIsCvvFocused(false);
+      return;
     }
   };
+
+  const handleBlur = () => setIsCvvFocused(false);
 
   return (
     <>
@@ -50,7 +52,7 @@ export default function App() {
           }}
           validate={validateFrom}
           onSubmit={onSubmit}>
-          {({ setFieldValue, values }) => (
+          {({ setFieldValue, values, resetForm, handleSubmit }) => (
             <>
               <Card
                 isCvvFocused={isCvvFocused}
@@ -59,7 +61,11 @@ export default function App() {
               />
               <Form
                 onChange={handleChange(setFieldValue)}
+                onBlur={handleBlur}
                 onFocus={handleFocus}
+                required={true}
+                resetForm={resetForm}
+                handleSubmit={handleSubmit}
                 cvvLabel={cardInfo.code?.name || 'CVV'}
               />
             </>
