@@ -21,10 +21,11 @@ const normalizeCvvInput = (cardInfo = {}, cvv = '') => {
   return validCvv.join('');
 };
 
-const normalizeOwnerInput = (value) => value.replace(/[^a-zA-Z]+/g, '');
+const normalizeOwnerInput = (value) => value.replace(/[^a-zA-Z]+/g, '').split('').slice(0, 20).join('');
 
-const normalizeInput = (value, name, cardInfo) => {
-  switch (name.toLowerCase()) {
+const normalizeInputValue = (target, cardInfo) => {
+  const { name, value } = target;
+  switch (name) {
     case 'name':
     case 'surname':
       return normalizeOwnerInput(value);
@@ -37,4 +38,4 @@ const normalizeInput = (value, name, cardInfo) => {
   }
 };
 
-export default normalizeInput;
+export default normalizeInputValue;

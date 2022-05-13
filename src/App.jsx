@@ -1,7 +1,5 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { getCardInfo } from './helpers/cardInfo';
-import normalizeInput from './helpers/normalizeInput';
 import validateFrom from './helpers/validators';
 import { Card, Form } from './components';
 import { StyledContainer } from './styles';
@@ -17,24 +15,6 @@ export default function App() {
     }
     alert(JSON.stringify(message, null, 1));
   };
-
-  const handleChange = cb => e => {
-    let value = e.target.value.trim();
-    const name = e.target.name;
-    value = normalizeInput(value, name, cardInfo);
-    if (name === 'number') setCardInfo(getCardInfo(value));
-    cb(name, value);
-  };
-
-  const handleFocus = e => {
-    if (e.target.name === 'cvv') {
-      setIsCvvFocused(true);
-    } else {
-      return;
-    }
-  };
-
-  const handleBlur = () => setIsCvvFocused(false);
 
   return (
     <>
@@ -52,7 +32,7 @@ export default function App() {
           }}
           validate={validateFrom}
           onSubmit={onSubmit}>
-          {({ setFieldValue, values, resetForm, handleSubmit, errors }) => (
+          {({ setFieldValue, resetForm, handleSubmit, errors, values }) => (
             <>
               <Card
                 isCvvFocused={isCvvFocused}
@@ -60,14 +40,15 @@ export default function App() {
                 values={values}
               />
               <Form
-                onChange={handleChange(setFieldValue)}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-                required={true}
                 resetForm={resetForm}
+                setIsCvvFocused={setIsCvvFocused}
+                setFieldValue={setFieldValue}
+                setCardInfo={setCardInfo}
                 handleSubmit={handleSubmit}
+                cardInfo={cardInfo}
                 errors={errors}
-                cvvLabel={cardInfo.code?.name || 'CVV'}
+                required={true}
+                values={values}
               />
             </>
           )}
