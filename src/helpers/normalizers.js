@@ -21,17 +21,21 @@ const normalizeCvvInput = (cardInfo = {}, cvv = '') => {
   return validCvv.join('');
 };
 
-const normalizeOwnerInput = (value) => value.replace(/[^a-zA-Z]+/g, '').split('').slice(0, 20).join('');
+const normalizeOwnerInput = value =>
+  value
+    .replace(/[^a-zA-Z]+/g, '')
+    .split('')
+    .slice(0, 20)
+    .join('');
 
-const normalizeInputValue = (target, cardInfo) => {
-  const { name, value } = target;
+const normalizeInputValue = ({ name, value, cardInfo }) => {
   switch (name) {
     case 'name':
     case 'surname':
       return normalizeOwnerInput(value);
     case 'cvv':
       return normalizeCvvInput(cardInfo, value);
-    case 'number': 
+    case 'number':
       return normalizeNumberInput(cardInfo, value);
     default:
       return value;

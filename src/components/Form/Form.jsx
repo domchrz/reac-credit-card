@@ -27,13 +27,15 @@ export default function Form({
     }, 0);
   };
 
-  const onChange = e =>
-    setFieldValue(e.target.name, normalizeInputValue(e.target, cardInfo));
+  const onChange = e => {
+    const { name, value } = e.target;
+    setFieldValue(name, normalizeInputValue({ name, value, cardInfo }));
+  };
 
   const onNumberChange = e => {
-    const cardNumber = normalizeInputValue(e.target, cardInfo);
-    setCardInfo(getCardInfo(cardNumber));
-    setFieldValue(e.target.name, cardNumber);
+    const { name, value } = e.target;
+    setFieldValue(name, normalizeInputValue({ name, value, cardInfo }));
+    setCardInfo(getCardInfo(value));
   };
 
   const onBlur = (e, cb) => cb(e);
